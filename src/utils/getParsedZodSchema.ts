@@ -1,5 +1,6 @@
 import type { QRL } from '@builder.io/qwik';
-import type { SafeParseReturnType, ZodType } from 'zod';
+import type { ZodType } from 'zod';
+import type { ZodMiniType } from 'zod/mini';
 import type { MaybeFunction } from '../types';
 
 /**
@@ -10,10 +11,10 @@ import type { MaybeFunction } from '../types';
  *
  * @returns The parse result.
  */
-export async function getParsedZodSchema<Schema, Value>(
-  schema: QRL<MaybeFunction<ZodType<any, any, Schema>>>,
+export async function getParsedZodSchema<Schema extends ZodType | ZodMiniType, Value>(
+  schema: QRL<MaybeFunction<Schema>>,
   value: Value
-): Promise<SafeParseReturnType<Schema, any>> {
+) {
   const zodSchema = await schema.resolve();
   return (
     typeof zodSchema === 'function' ? zodSchema() : zodSchema
