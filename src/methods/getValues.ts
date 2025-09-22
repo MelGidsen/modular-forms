@@ -5,8 +5,7 @@ import type {
   FieldValues,
   FormStore,
   Maybe,
-  PartialValues,
-  ResponseData,
+  PartialValues
 } from '../types';
 import { getFieldStore, getFilteredNames, getOptions } from '../utils';
 
@@ -29,10 +28,9 @@ export type GetValuesOptions = Partial<{
  * @returns The form field values.
  */
 export function getValues<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   options?: Maybe<GetValuesOptions>
 ): PartialValues<TFieldValues>;
 
@@ -47,10 +45,9 @@ export function getValues<
  */
 export function getValues<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldArrayName,
   options?: Maybe<GetValuesOptions>
 ): PartialValues<FieldArrayPathValue<TFieldValues, TFieldArrayName>>;
@@ -65,19 +62,17 @@ export function getValues<
  * @returns The form field values.
  */
 export function getValues<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   names: (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[],
   options?: Maybe<GetValuesOptions>
 ): PartialValues<TFieldValues>;
 
 export function getValues<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   arg2?: Maybe<
     | FieldArrayPath<TFieldValues>
     | (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[]

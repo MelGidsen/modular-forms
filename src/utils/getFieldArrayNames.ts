@@ -1,9 +1,8 @@
 import type {
-  FieldValues,
-  ResponseData,
   FieldArrayPath,
+  FieldValues,
   FormStore,
-  Maybe,
+  Maybe
 } from '../types';
 import { removeInvalidNames } from './removeInvalidNames';
 
@@ -16,10 +15,9 @@ import { removeInvalidNames } from './removeInvalidNames';
  * @returns All field array names of the form.
  */
 export function getFieldArrayNames<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   shouldValid: Maybe<boolean> = true
 ): FieldArrayPath<TFieldValues>[] {
   // Get name of every field array

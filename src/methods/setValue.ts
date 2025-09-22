@@ -3,8 +3,7 @@ import type {
   FieldPathValue,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import {
   initializeFieldStore,
@@ -32,17 +31,16 @@ export type SetValueOptions = Partial<{
  */
 export function setValue<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldName,
   value: FieldPathValue<TFieldValues, TFieldName>,
   options?: Maybe<SetValueOptions>
 ): void;
 
 export function setValue(
-  form: FormStore<FieldValues, ResponseData>,
+  form: FormStore<FieldValues>,
   name: string,
   value: FieldPathValue<FieldValues, string>,
   {

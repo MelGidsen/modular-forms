@@ -1,19 +1,17 @@
 import type {
-  FieldValues,
-  ResponseData,
-  FormStore,
-  Maybe,
-  FieldPath,
   FieldArrayPath,
+  FieldPath,
+  FieldValues,
   FormErrors,
+  FormStore,
+  Maybe
 } from '../types';
 import {
+  getFieldArrayStore,
+  getFieldStore,
   getFilteredNames,
   getOptions,
   getUniqueId,
-  getFieldStore,
-  getFieldArrayStore,
-  setErrorResponse,
   updateFormInvalid,
 } from '../utils';
 import { focus } from './focus';
@@ -36,10 +34,9 @@ export type ValidateOptions = Partial<{
  * @returns Whether the fields are valid.
  */
 export async function validate<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   options?: Maybe<ValidateOptions>
 ): Promise<boolean>;
 
@@ -53,10 +50,9 @@ export async function validate<
  * @returns Whether the fields are valid.
  */
 export async function validate<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>,
   options?: Maybe<ValidateOptions>
 ): Promise<boolean>;
@@ -71,19 +67,17 @@ export async function validate<
  * @returns Whether the fields are valid.
  */
 export async function validate<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   names: (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[],
   options?: Maybe<ValidateOptions>
 ): Promise<boolean>;
 
 export async function validate<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   arg2?: Maybe<
     | FieldPath<TFieldValues>
     | FieldArrayPath<TFieldValues>
@@ -190,9 +184,6 @@ export async function validate<
       })
     ),
   ]);
-
-  // Set error response if necessary
-  setErrorResponse(form, formErrors, { shouldActive });
 
   // Focus first field with an error if specified
   if (shouldFocus) {

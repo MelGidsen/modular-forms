@@ -4,8 +4,7 @@ import type {
   FieldValue,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { isFieldDirty } from './isFieldDirty';
 import { updateFormDirty } from './updateFormDirty';
@@ -18,10 +17,9 @@ import { updateFormDirty } from './updateFormDirty';
  */
 export function updateFieldDirty<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFielName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   field: FieldStore<TFieldValues, TFielName>
 ): void {
   // Check if field is dirty

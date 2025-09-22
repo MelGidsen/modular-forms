@@ -1,6 +1,6 @@
 import type { JSXOutput } from '@builder.io/qwik';
-import type { FieldProps, FormProps, FieldArrayProps } from '../components';
-import { Field, Form, FieldArray } from '../components';
+import type { FieldArrayProps, FieldProps, FormProps } from '../components';
+import { Field, FieldArray, Form } from '../components';
 import type {
   FieldArrayPath,
   FieldPath,
@@ -9,8 +9,7 @@ import type {
   FormOptions,
   FormStore,
   MaybeValue,
-  PartialKey,
-  ResponseData,
+  PartialKey
 } from '../types';
 import { useFormStore } from './useFormStore';
 
@@ -23,44 +22,43 @@ import { useFormStore } from './useFormStore';
  * @returns The store and linked components.
  */
 export function useForm<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData = undefined
+  TFieldValues extends FieldValues
 >(
-  options: FormOptions<TFieldValues, TResponseData>
+  options: FormOptions<TFieldValues>
 ): [
-  FormStore<TFieldValues, TResponseData>,
+  FormStore<TFieldValues>,
   {
     Form: (
-      props: Omit<FormProps<TFieldValues, TResponseData>, 'of' | 'action'>
+      props: Omit<FormProps<TFieldValues>, 'of' | 'action'>
     ) => JSXOutput;
     Field: <TFieldName extends FieldPath<TFieldValues>>(
       props: FieldPathValue<TFieldValues, TFieldName> extends MaybeValue<string>
         ? PartialKey<
-            Omit<FieldProps<TFieldValues, TResponseData, TFieldName>, 'of'>,
+            Omit<FieldProps<TFieldValues, TFieldName>, 'of'>,
             'type'
           >
-        : Omit<FieldProps<TFieldValues, TResponseData, TFieldName>, 'of'>
+        : Omit<FieldProps<TFieldValues, TFieldName>, 'of'>
     ) => JSXOutput;
     FieldArray: <TFieldArrayName extends FieldArrayPath<TFieldValues>>(
       props: Omit<
-        FieldArrayProps<TFieldValues, TResponseData, TFieldArrayName>,
+        FieldArrayProps<TFieldValues, TFieldArrayName>,
         'of'
       >
     ) => JSXOutput;
   }
 ];
 
-export function useForm(options: FormOptions<FieldValues, ResponseData>): [
-  FormStore<FieldValues, ResponseData>,
+export function useForm(options: FormOptions<FieldValues>): [
+  FormStore<FieldValues>,
   {
     Form: (
-      props: Omit<FormProps<FieldValues, ResponseData>, 'of' | 'action'>
+      props: Omit<FormProps<FieldValues>, 'of' | 'action'>
     ) => JSXOutput;
     Field: (
-      props: Omit<FieldProps<FieldValues, ResponseData, string>, 'of'>
+      props: Omit<FieldProps<FieldValues, string>, 'of'>
     ) => JSXOutput;
     FieldArray: (
-      props: Omit<FieldArrayProps<FieldValues, ResponseData, string>, 'of'>
+      props: Omit<FieldArrayProps<FieldValues, string>, 'of'>
     ) => JSXOutput;
   }
 ] {
@@ -71,7 +69,7 @@ export function useForm(options: FormOptions<FieldValues, ResponseData>): [
   return [
     form,
     {
-      Form: (props) => Form({ of: form, action: options.action, ...props }),
+      Form: (props) => Form({ of: form, ...props }),
       Field: (props) => Field({ of: form, ...props }),
       FieldArray: (props) => FieldArray({ of: form, ...props }),
     },

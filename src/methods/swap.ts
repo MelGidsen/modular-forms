@@ -39,7 +39,7 @@ export function swap<
   TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldArrayName,
   { at: index1, and: index2 }: SwapOptions
 ): void {

@@ -2,8 +2,7 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  RawFieldState,
-  ResponseData,
+  RawFieldState
 } from '../types';
 import { initializeFieldStore } from './initializeFieldStore';
 
@@ -16,10 +15,9 @@ import { initializeFieldStore } from './initializeFieldStore';
  */
 export function setFieldState<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldName,
   state: RawFieldState<TFieldValues, TFieldName>
 ): void {

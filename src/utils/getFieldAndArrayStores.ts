@@ -4,8 +4,7 @@ import type {
   FieldPath,
   FieldStore,
   FieldValues,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 
 /**
@@ -16,10 +15,9 @@ import type {
  * @returns The store tuple.
  */
 export function getFieldAndArrayStores<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>
+  form: FormStore<TFieldValues>
 ): (
   | FieldStore<TFieldValues, FieldPath<TFieldValues>>
   | FieldArrayStore<TFieldValues, FieldArrayPath<TFieldValues>>

@@ -2,8 +2,7 @@ import type {
   FieldArrayPath,
   FieldPath,
   FieldValues,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 import { getFieldArrayNames } from './getFieldArrayNames';
 import { getFieldArrayStore } from './getFieldArrayStore';
@@ -16,10 +15,9 @@ import { getPathIndex } from './getPathIndex';
  * @param names The names to be filtered.
  */
 export function removeInvalidNames<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   names: (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[]
 ) {
   getFieldArrayNames(form, false).forEach((fieldArrayName) => {

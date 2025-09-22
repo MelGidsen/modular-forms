@@ -4,8 +4,7 @@ import type {
   FieldValues,
   FormStore,
   RawFieldArrayState,
-  RawFieldState,
-  ResponseData,
+  RawFieldState
 } from '../types';
 import {
   getFieldArrayNames,
@@ -37,10 +36,9 @@ export type MoveOptions = {
  * @param options The move options.
  */
 export function move<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldArrayPath<TFieldValues>,
   { from: fromIndex, to: toIndex }: MoveOptions
 ): void {

@@ -5,8 +5,7 @@ import type {
   FieldValues,
   FormErrors,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 
 /**
@@ -17,10 +16,9 @@ import type {
  * @param options The error options.
  */
 export function setFieldErrors<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   errors: FormErrors<TFieldValues>,
   options: SetErrorOptions
 ) {

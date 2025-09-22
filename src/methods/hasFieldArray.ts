@@ -2,8 +2,7 @@ import type {
   FieldArrayPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { getFieldArrayStore } from '../utils';
 
@@ -27,10 +26,9 @@ export type HasFieldArrayOptions = Partial<{
  * @returns Whether the field array is included.
  */
 export function hasFieldArray<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldArrayPath<TFieldValues>,
   {
     shouldActive = true,

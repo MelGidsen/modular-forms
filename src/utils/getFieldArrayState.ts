@@ -3,8 +3,7 @@ import type {
   FieldValues,
   FormStore,
   Maybe,
-  RawFieldArrayState,
-  ResponseData,
+  RawFieldArrayState
 } from '../types';
 import { getFieldArrayStore } from './getFieldArrayStore';
 
@@ -17,10 +16,9 @@ import { getFieldArrayStore } from './getFieldArrayStore';
  * @returns The state of the field array.
  */
 export function getFieldArrayState<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldArrayPath<TFieldValues>
 ): Maybe<RawFieldArrayState> {
   const fieldArray = getFieldArrayStore(form, name);

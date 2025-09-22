@@ -2,8 +2,7 @@ import { useStore } from '@builder.io/qwik';
 import type {
   FieldValues,
   FormOptions,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 import { getInitialStores } from '../utils';
 
@@ -17,16 +16,14 @@ import { getInitialStores } from '../utils';
  * @returns The reactive store.
  */
 export function useFormStore<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData = undefined
+  TFieldValues extends FieldValues
 >({
   validate,
   validateOn = 'submit',
   revalidateOn = 'input',
   ...options
-}: FormOptions<TFieldValues, TResponseData>): FormStore<
-  TFieldValues,
-  TResponseData
+}: FormOptions<TFieldValues>): FormStore<
+  TFieldValues
 > {
   return useStore(() => {
     const [fields, fieldArrays] = getInitialStores(options);
@@ -40,7 +37,6 @@ export function useFormStore<
         validateOn,
         revalidateOn,
       },
-      // FIXME: Set state based on `action`
       element: undefined,
       submitCount: 0,
       submitting: false,
@@ -48,8 +44,7 @@ export function useFormStore<
       validating: false,
       touched: false,
       dirty: false,
-      invalid: false,
-      response: options.action?.value?.response || {},
+      invalid: false
     };
   });
 }

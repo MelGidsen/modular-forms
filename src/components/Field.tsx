@@ -42,10 +42,9 @@ export type FieldElementProps<
  */
 export type FieldProps<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 > = {
-  of: FormStore<TFieldValues, TResponseData>;
+  of: FormStore<TFieldValues>;
   name: TFieldName;
   type: FieldType<FieldPathValue<TFieldValues, TFieldName>>;
   children: (
@@ -70,7 +69,6 @@ export type FieldProps<
  */
 export function Field<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >({
   children,
@@ -78,8 +76,8 @@ export function Field<
   type,
   ...props
 }: FieldPathValue<TFieldValues, TFieldName> extends MaybeValue<string>
-  ? PartialKey<FieldProps<TFieldValues, TResponseData, TFieldName>, 'type'>
-  : FieldProps<TFieldValues, TResponseData, TFieldName>): JSXOutput;
+  ? PartialKey<FieldProps<TFieldValues, TFieldName>, 'type'>
+  : FieldProps<TFieldValues, TFieldName>): JSXOutput;
 
 export function Field({
   children,
@@ -87,8 +85,8 @@ export function Field({
   type,
   ...props
 }:
-  | PartialKey<FieldProps<FieldValues, ResponseData, string>, 'type'>
-  | FieldProps<FieldValues, ResponseData, string>): JSXOutput {
+  | PartialKey<FieldProps<FieldValues, string>, 'type'>
+  | FieldProps<FieldValues, string>): JSXOutput {
   // Destructure props
   const { of: form } = props;
 

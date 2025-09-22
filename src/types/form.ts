@@ -1,5 +1,4 @@
-import type { NoSerialize, Signal, QRL } from '@builder.io/qwik';
-import type { ActionStore } from '@builder.io/qwik-city';
+import type { NoSerialize, QRL, Signal } from '@builder.io/qwik';
 import type { FieldStore, FieldValue, FieldValues } from './field';
 import type { FieldArrayStore } from './fieldArray';
 import type { FieldArrayPath, FieldPath, TypeInfoPath } from './path';
@@ -101,32 +100,12 @@ export type FormDataInfo<TFieldValues extends FieldValues> = Partial<{
 }>;
 
 /**
- * Value type of the form action store.
- */
-export type FormActionStore<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
-> = {
-  values: PartialValues<TFieldValues>;
-  errors: FormErrors<TFieldValues>;
-  response: FormResponse<TResponseData>;
-};
-
-/**
  * Value type of the form options.
  */
 export type FormOptions<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 > = {
   loader: Readonly<Signal<InitialValues<TFieldValues>>>;
-  action?: Maybe<
-    ActionStore<
-      FormActionStore<TFieldValues, TResponseData>,
-      PartialValues<TFieldValues>,
-      true
-    >
-  >;
   validate?: Maybe<QRL<ValidateForm<TFieldValues>>>;
   validateOn?: Maybe<ValidationMode>;
   revalidateOn?: Maybe<ValidationMode>;
@@ -150,8 +129,7 @@ export type InternalFormStore<TFieldValues extends FieldValues> = {
  * Value type of the form store.
  */
 export type FormStore<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData = undefined
+  TFieldValues extends FieldValues
 > = {
   internal: InternalFormStore<TFieldValues>;
   element: HTMLFormElement | undefined;
@@ -162,11 +140,10 @@ export type FormStore<
   touched: boolean;
   dirty: boolean;
   invalid: boolean;
-  response: FormResponse<TResponseData>;
 };
 
 /**
  * Utility type to extract the field values from the form store.
  */
-export type FormValues<TFormStore extends FormStore<any, any>> =
-  TFormStore extends FormStore<infer TFieldValues, any> ? TFieldValues : never;
+export type FormValues<TFormStore extends FormStore<any>> =
+  TFormStore extends FormStore<infer TFieldValues> ? TFieldValues : never;

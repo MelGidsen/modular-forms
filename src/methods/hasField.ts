@@ -2,8 +2,7 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { getFieldStore } from '../utils';
 
@@ -27,10 +26,9 @@ export type HasFieldOptions = Partial<{
  * @returns Whether the field is included.
  */
 export function hasField<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldPath<TFieldValues>,
   {
     shouldActive = true,

@@ -4,8 +4,7 @@ import type {
   FieldValues,
   FormErrors,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import {
   getFieldArrayStore,
@@ -32,10 +31,9 @@ export type GetErrorsOptions = Partial<{
  * @returns The form errors.
  */
 export function getErrors<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   options?: Maybe<GetErrorsOptions>
 ): FormErrors<TFieldValues>;
 
@@ -50,10 +48,9 @@ export function getErrors<
  */
 export function getErrors<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldArrayName,
   options?: Maybe<GetErrorsOptions>
 ): FormErrors<TFieldValues>;
@@ -68,19 +65,17 @@ export function getErrors<
  * @returns The form errors.
  */
 export function getErrors<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   names: (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[],
   options?: Maybe<GetErrorsOptions>
 ): FormErrors<TFieldValues>;
 
 export function getErrors<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   arg2?: Maybe<
     | FieldArrayPath<TFieldValues>
     | (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[]

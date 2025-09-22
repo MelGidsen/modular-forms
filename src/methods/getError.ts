@@ -3,10 +3,9 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
-import { getFieldStore, getFieldArrayStore } from '../utils';
+import { getFieldArrayStore, getFieldStore } from '../utils';
 
 /**
  * Value tye of the get error options.
@@ -26,10 +25,9 @@ export type GetErrorOptions = Partial<{
  * @returns The error of the field or field array.
  */
 export function getError<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>,
   {
     shouldActive = true,

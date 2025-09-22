@@ -2,8 +2,7 @@ import type {
   FieldArrayPath,
   FieldArrayPathValue,
   FieldValues,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 import { getFieldArrayStore, getUniqueId, setFieldArrayValue } from '../utils';
 
@@ -27,10 +26,9 @@ export type ReplaceOptions<
  */
 export function replace<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldArrayName,
   options: ReplaceOptions<TFieldValues, TFieldArrayName>
 ): void {

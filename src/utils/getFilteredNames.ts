@@ -3,8 +3,7 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { getFieldArrayNames } from './getFieldArrayNames';
 import { getFieldNames } from './getFieldNames';
@@ -23,10 +22,9 @@ import { getFieldNames } from './getFieldNames';
  */
 export function getFilteredNames<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TOptions extends Record<string, any>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   arg2?: Maybe<
     | FieldPath<TFieldValues>
     | FieldArrayPath<TFieldValues>

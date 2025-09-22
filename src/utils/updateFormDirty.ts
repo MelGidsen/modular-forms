@@ -1,4 +1,4 @@
-import type { FieldValues, FormStore, Maybe, ResponseData } from '../types';
+import type { FieldValues, FormStore, Maybe } from '../types';
 import { getFieldAndArrayStores } from './getFieldAndArrayStores';
 
 /**
@@ -8,9 +8,8 @@ import { getFieldAndArrayStores } from './getFieldAndArrayStores';
  * @param dirty Whether dirty state is true.
  */
 export function updateFormDirty<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
->(form: FormStore<TFieldValues, TResponseData>, dirty?: Maybe<boolean>): void {
+  TFieldValues extends FieldValues
+>(form: FormStore<TFieldValues>, dirty?: Maybe<boolean>): void {
   form.dirty =
     dirty ||
     getFieldAndArrayStores(form).some(

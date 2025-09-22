@@ -1,19 +1,18 @@
 import type {
-  FieldValues,
-  ResponseData,
-  FormStore,
-  Maybe,
-  FieldPath,
   FieldArrayPath,
+  FieldPath,
   FieldPathValue,
+  FieldValues,
+  FormStore,
   InitialValues,
+  Maybe
 } from '../types';
 import {
+  getFieldArrayStore,
+  getFieldStore,
   getFilteredNames,
   getOptions,
-  getFieldStore,
   getPathValue,
-  getFieldArrayStore,
   getUniqueId,
   updateFormState,
 } from '../utils';
@@ -47,10 +46,9 @@ export type ResetOptions<
  * @param options The reset options.
  */
 export function reset<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   options?: Maybe<ResetOptions<TFieldValues, FieldPath<TFieldValues>>>
 ): void;
 
@@ -64,10 +62,9 @@ export function reset<
  */
 export function reset<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldName | FieldArrayPath<TFieldValues>,
   options?: Maybe<ResetOptions<TFieldValues, TFieldName>>
 ): void;
@@ -81,20 +78,18 @@ export function reset<
  * @param options The reset options.
  */
 export function reset<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   names: (FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>)[],
   options?: Maybe<ResetOptions<TFieldValues, FieldPath<TFieldValues>>>
 ): void;
 
 export function reset<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   arg2?: Maybe<
     | TFieldName
     | FieldArrayPath<TFieldValues>
@@ -119,7 +114,6 @@ export function reset<
   const {
     initialValue,
     initialValues,
-    keepResponse = false,
     keepSubmitCount = false,
     keepSubmitted = false,
     keepValues = false,
@@ -211,11 +205,6 @@ export function reset<
 
   // Reset state of form if necessary
   if (resetEntireForm) {
-    // Reset response if it is not to be kept
-    if (!keepResponse) {
-      form.response = {};
-    }
-
     // Reset submit count if it is not to be kept
     if (!keepSubmitCount) {
       form.submitCount = 0;

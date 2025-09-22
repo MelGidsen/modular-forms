@@ -6,8 +6,7 @@ import type {
   FieldStore,
   FieldValues,
   FormStore,
-  ResponseData,
-  ValidationMode,
+  ValidationMode
 } from '../types';
 import { updateFieldDirty } from './updateFieldDirty';
 import { validateIfRequired } from './validateIfRequired';
@@ -25,10 +24,9 @@ import { validateIfRequired } from './validateIfRequired';
  */
 export async function handleFieldEvent<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   field: FieldStore<TFieldValues, TFieldName>,
   name: TFieldName,
   event: FieldEvent,
@@ -38,7 +36,7 @@ export async function handleFieldEvent<
 ): Promise<void>;
 
 export async function handleFieldEvent(
-  form: FormStore<FieldValues, ResponseData>,
+  form: FormStore<FieldValues>,
   field: FieldStore<FieldValues, string>,
   name: string,
   event: FieldEvent,

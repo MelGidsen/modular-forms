@@ -31,12 +31,11 @@ import { getUniqueId, updateFormState } from '../utils';
  */
 type LifecycleProps<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 > = {
   key: string | number;
-  of: FormStore<TFieldValues, TResponseData>;
+  of: FormStore<TFieldValues>;
   store:
     | FieldStore<TFieldValues, TFieldName>
     | FieldArrayStore<TFieldValues, TFieldArrayName>;
@@ -64,14 +63,14 @@ export function Lifecycle<
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
   props: PublicProps<
-    LifecycleProps<TFieldValues, TResponseData, TFieldName, TFieldArrayName>
+    LifecycleProps<TFieldValues, TFieldName, TFieldArrayName>
   >,
   key: string | null,
   flags: number
 ): JSXOutput;
 
 export function Lifecycle(
-  props: PublicProps<LifecycleProps<FieldValues, ResponseData, string, string>>,
+  props: PublicProps<LifecycleProps<FieldValues, string, string>>,
   key: string | null,
   flags: number
 ): JSXOutput {
@@ -87,7 +86,6 @@ export function Lifecycle(
       keepState = true,
     }: LifecycleProps<
       FieldValues,
-      ResponseData,
       string,
       string
     >): JSX.Element => {

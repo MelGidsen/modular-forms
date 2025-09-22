@@ -2,8 +2,7 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { removeInvalidNames } from './removeInvalidNames';
 
@@ -16,10 +15,9 @@ import { removeInvalidNames } from './removeInvalidNames';
  * @returns All field names of the form.
  */
 export function getFieldNames<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   shouldValid: Maybe<boolean> = true
 ): FieldPath<TFieldValues>[] {
   // Get name of every field

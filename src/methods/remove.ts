@@ -1,8 +1,7 @@
 import type {
   FieldArrayPath,
   FieldValues,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 import {
   getFieldArrayNames,
@@ -11,10 +10,10 @@ import {
   getFieldNames,
   getFieldState,
   getPathIndex,
-  updateFieldArrayDirty,
   setFieldArrayState,
   setFieldState,
   sortArrayPathIndex,
+  updateFieldArrayDirty,
   validateIfRequired,
 } from '../utils';
 
@@ -33,10 +32,9 @@ export type RemoveOptions = {
  * @param options The remove options.
  */
 export function remove<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldArrayPath<TFieldValues>,
   { at: index }: RemoveOptions
 ): void {

@@ -3,8 +3,7 @@ import type {
   FieldValues,
   FormStore,
   Maybe,
-  RawFieldState,
-  ResponseData,
+  RawFieldState
 } from '../types';
 import { getFieldStore } from './getFieldStore';
 
@@ -18,10 +17,9 @@ import { getFieldStore } from './getFieldStore';
  */
 export function getFieldState<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldName extends FieldPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldName
 ): Maybe<RawFieldState<TFieldValues, TFieldName>> {
   const field = getFieldStore(form, name);

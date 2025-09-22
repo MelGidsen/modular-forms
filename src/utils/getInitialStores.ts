@@ -24,37 +24,16 @@ import { getUniqueId } from './getUniqueId';
  * @returns The initial stores tuple.
  */
 export function getInitialStores<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >({
   loader,
-  action,
   fieldArrays,
 }: Pick<
-  FormOptions<TFieldValues, TResponseData>,
-  'loader' | 'action' | 'fieldArrays'
+  FormOptions<TFieldValues>,
+  'loader' | 'fieldArrays'
 >): [FieldsStore<TFieldValues>, FieldArraysStore<TFieldValues>] {
-  // Create function to get value of field or field array
-  function getActionValue<TFieldName extends FieldPath<TFieldValues>>(
-    name: TFieldName
-  ): Maybe<FieldPathValue<TFieldValues, TFieldName>>;
-  function getActionValue<TFieldArrayName extends FieldArrayPath<TFieldValues>>(
-    name: TFieldArrayName
-  ): Maybe<FieldArrayPathValue<TFieldValues, TFieldArrayName>>;
-  function getActionValue(name: any): any {
-    return action?.value?.values && getPathValue(name, action.value.values);
-  }
-
   // Create function to generate array items
   const generateItems = () => getUniqueId();
-
-  // Create function to get error of field
-  const getActionError = <
-    TFieldName extends FieldPath<TFieldValues>,
-    TFieldArrayName extends FieldArrayPath<TFieldValues>
-  >(
-    name: TFieldName | TFieldArrayName
-  ): string => action?.value?.errors[name] || '';
 
   // Create recursive function to create initial stores
   const createInitialStores = (
@@ -74,12 +53,8 @@ export function getInitialStores<
             compoundPath as FieldArrayPath<TFieldValues>,
             {
               initialItems,
-              items: getActionValue(
-                compoundPath as FieldArrayPath<TFieldValues>
-              )?.map(generateItems) || [...initialItems],
-              error: getActionError(
-                compoundPath as FieldArrayPath<TFieldValues>
-              ),
+              items: [...initialItems],
+              error: '',
             }
           );
 
@@ -93,9 +68,8 @@ export function getInitialStores<
         stores[0][compoundPath as FieldPath<TFieldValues>] =
           getInitialFieldStore(compoundPath as FieldPath<TFieldValues>, {
             initialValue: value,
-            value:
-              getActionValue(compoundPath as FieldPath<TFieldValues>) ?? value,
-            error: getActionError(compoundPath as FieldPath<TFieldValues>),
+            value: value,
+            error: '',
           });
       }
 

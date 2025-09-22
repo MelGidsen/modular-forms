@@ -3,8 +3,7 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
 import { type SetErrorOptions, setError } from './setError';
 
@@ -16,10 +15,9 @@ import { type SetErrorOptions, setError } from './setError';
  * @param options The error options.
  */
 export function clearError<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>,
   options?: Maybe<SetErrorOptions>
 ): void {

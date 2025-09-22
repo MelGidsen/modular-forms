@@ -3,10 +3,9 @@ import type {
   FieldPath,
   FieldValues,
   FormStore,
-  Maybe,
-  ResponseData,
+  Maybe
 } from '../types';
-import { getFieldStore, getFieldArrayStore, updateFormInvalid } from '../utils';
+import { getFieldArrayStore, getFieldStore, updateFormInvalid } from '../utils';
 import { focus } from './focus';
 
 /**
@@ -28,10 +27,9 @@ export type SetErrorOptions = Partial<{
  * @param options The error options.
  */
 export function setError<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: FieldPath<TFieldValues> | FieldArrayPath<TFieldValues>,
   error: string,
   {

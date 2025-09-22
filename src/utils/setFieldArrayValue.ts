@@ -3,8 +3,7 @@ import type {
   FieldArrayPathValue,
   FieldPath,
   FieldValues,
-  FormStore,
-  ResponseData,
+  FormStore
 } from '../types';
 import { getUniqueId } from './getUniqueId';
 import { setFieldArrayState } from './setFieldArrayState';
@@ -31,10 +30,9 @@ type ValueOptions<
  */
 export function setFieldArrayValue<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   name: TFieldArrayName,
   { at: index, value }: ValueOptions<TFieldValues, TFieldArrayName>
 ): void {

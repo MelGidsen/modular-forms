@@ -1,4 +1,4 @@
-import type { FieldValues, FormStore, ResponseData } from '../types';
+import type { FieldValues, FormStore } from '../types';
 
 /**
  * Validates and submits the form.
@@ -6,8 +6,7 @@ import type { FieldValues, FormStore, ResponseData } from '../types';
  * @param form The form to be submitted.
  */
 export function submit<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
->(form: FormStore<TFieldValues, TResponseData>): void {
+  TFieldValues extends FieldValues
+>(form: FormStore<TFieldValues>): void {
   form.element?.requestSubmit();
 }

@@ -1,4 +1,4 @@
-import type { FieldValues, FormStore, Maybe, ResponseData } from '../types';
+import type { FieldValues, FormStore, Maybe } from '../types';
 import { getFieldAndArrayStores } from './getFieldAndArrayStores';
 
 /**
@@ -8,10 +8,9 @@ import { getFieldAndArrayStores } from './getFieldAndArrayStores';
  * @param dirty Whether there is an error.
  */
 export function updateFormInvalid<
-  TFieldValues extends FieldValues,
-  TResponseData extends ResponseData
+  TFieldValues extends FieldValues
 >(
-  form: FormStore<TFieldValues, TResponseData>,
+  form: FormStore<TFieldValues>,
   invalid?: Maybe<boolean>
 ): void {
   form.invalid =

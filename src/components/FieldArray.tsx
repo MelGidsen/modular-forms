@@ -18,10 +18,9 @@ import { Lifecycle } from './Lifecycle';
  */
 export type FieldArrayProps<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 > = {
-  of: FormStore<TFieldValues, TResponseData>;
+  of: FormStore<TFieldValues>;
   name: TFieldArrayName;
   children: (
     store: FieldArrayStore<TFieldValues, TFieldArrayName>
@@ -38,13 +37,12 @@ export type FieldArrayProps<
  */
 export function FieldArray<
   TFieldValues extends FieldValues,
-  TResponseData extends ResponseData,
   TFieldArrayName extends FieldArrayPath<TFieldValues>
 >({
   children,
   name,
   ...props
-}: FieldArrayProps<TFieldValues, TResponseData, TFieldArrayName>): JSXOutput {
+}: FieldArrayProps<TFieldValues, TFieldArrayName>): JSXOutput {
   // Get store of specified field
   const fieldArray = getFieldArrayStore(props.of, name)!;
 
