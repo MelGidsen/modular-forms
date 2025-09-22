@@ -3,18 +3,17 @@
   "description": "The modular and type-safe form library for Qwik",
   "version": "0.29.1",
   "license": "MIT",
-  "author": "Fabian Hiller",
-  "homepage": "https://modularforms.dev",
+  "author": "Gideon Gaida",
+  "homepage": "https://github.com/MelGidsen/modular-forms",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fabian-hiller/modular-forms"
+    "url": "https://github.com/MelGidsen/modular-forms"
   },
   "keywords": [
     "modular-forms",
     "form",
     "forms",
     "qwik",
-    "qwik-city",
     "performance",
     "bundle-size",
     "form-validation",
